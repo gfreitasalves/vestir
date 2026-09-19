@@ -32,4 +32,5 @@
 ## Notes
 
 - Todas as 3 clarificações críticas (persistência, múltiplos avatares, regra de sobreposição de roupas) foram resolvidas diretamente com o usuário antes da escrita da spec e incorporadas ao texto (FR-007, FR-008, FR-011, Assumptions).
-- Checklist completo — pronto para `/speckit-plan` (ou `/speckit-clarify` opcionalmente, caso surjam novas dúvidas).
+- Sessão de `/speckit-clarify` em 2026-09-19: 4 novas clarificações resolvidas (estado sem roupa selecionada, escopo de tipo de corpo, empilhamento de acessórios, catálogo mínimo de conteúdo). Ver seção `## Clarifications` em spec.md. Checklist revalidado: 16/16 → 16/16 (sem regressões).
+- Checklist completo — pronto para `/speckit-plan`.
