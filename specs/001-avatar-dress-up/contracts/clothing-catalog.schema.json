@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vestir.local/schemas/clothing-catalog.schema.json",
+  "title": "ClothingCatalog",
+  "description": "Formato do conteúdo estático do jogo (src/data/catalog.ts, exportado como este shape). Contrato entre o conteúdo produzido pelo time (peças de roupa, opções de pele/cabelo) e a UI que o consome. Ver spec.md FR-002/FR-003/FR-012/FR-013 e data-model.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["categories", "items", "appearanceOptions"],
+  "properties": {
+    "categories": {
+      "type": "array",
+      "minItems": 6,
+      "description": "Categorias de roupa. Deve incluir no mínimo: vestido, blusa, calça, short, sapato, acessório (FR-003).",
+      "items": { "$ref": "#/$defs/clothingCategory" }
+    },
+    "items": {
+      "type": "array",
+      "description": "Peças de roupa do catálogo. Cada categoria referenciada deve ter entre 3 e 5 itens (FR-012).",
+      "items": { "$ref": "#/$defs/clothingItem" }
+    },
+    "appearanceOptions": {
+      "type": "array",
+      "minItems": 2,
+      "description": "Opções de personalização de pele e cabelo (FR-002). Deve haver ao menos 1 de kind='skinTone' e 1 de kind='hairStyle'.",
+      "items": { "$ref": "#/$defs/appearanceOption" }
+    }
+  },
+  "$defs": {
+    "bodySlot": {
+      "type": "string",
+      "enum": ["top", "bottom", "shoes", "accessory"]
+    },
+    "clothingCategory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "slots"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "slots": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": { "$ref": "#/$defs/bodySlot" },
+          "description": "1 slot para a maioria das categorias; 2 slots (['top','bottom']) apenas para 'vestido', conforme FR-007."
+        }
+      }
+    },
+    "clothingItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "categoryId", "label", "asset"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "categoryId": { "type": "string", "minLength": 1, "description": "Deve corresponder a um ClothingCategory.id existente." },
+        "label": { "type": "string", "minLength": 1 },
+        "asset": { "type": "string", "minLength": 1, "description": "Caminho para a ilustração 2D da peça, estilo 'funko/chibi', vista frontal (FR-013)." }
+      }
+    },
+    "appearanceOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "label", "asset"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "type": "string", "enum": ["skinTone", "hairStyle"] },
+        "label": { "type": "string", "minLength": 1 },
+        "asset": { "type": "string", "minLength": 1 },
+        "colorValue": { "type": "string", "description": "Opcional: valor de cor usado para recolorir o corpo base via SVG/CSS." }
+      }
+    }
+  },
+  "examples": [
+    {
+      "categories": [
+        { "id": "dress", "label": "Vestido", "slots": ["top", "bottom"] },
+        { "id": "top", "label": "Blusa", "slots": ["top"] },
+        { "id": "pants", "label": "Calça", "slots": ["bottom"] },
+        { "id": "shorts", "label": "Short", "slots": ["bottom"] },
+        { "id": "shoes", "label": "Sapato", "slots": ["shoes"] },
+        { "id": "accessory", "label": "Acessório", "slots": ["accessory"] }
+      ],
+      "items": [
+        { "id": "dress-floral-01", "categoryId": "dress", "label": "Vestido floral", "asset": "assets/clothing/dress-floral-01.svg" },
+        { "id": "shoes-sneaker-02", "categoryId": "shoes", "label": "Tênis rosa", "asset": "assets/clothing/shoes-sneaker-02.svg" }
+      ],
+      "appearanceOptions": [
+        { "id": "skin-03", "kind": "skinTone", "label": "Tom de pele médio", "asset": "assets/avatar/skin-03.svg", "colorValue": "#C68642" },
+        { "id": "hair-bob-red", "kind": "hairStyle", "label": "Cabelo bob ruivo", "asset": "assets/avatar/hair-bob-red.svg" }
+      ]
+    }
+  ]
+}

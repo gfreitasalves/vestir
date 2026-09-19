@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vestir.local/schemas/avatar-save-state.schema.json",
+  "title": "AvatarSaveState",
+  "description": "Formato do objeto persistido em localStorage sob a chave 'vestir.avatarState.v1'. Contrato entre a lógica de estado do avatar (src/state) e a camada de storage (src/storage/localAvatarStorage.ts). Ver spec.md FR-008/FR-009/FR-010 e data-model.md > AvatarState.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "skinToneId", "hairStyleId", "equippedItems"],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versão do formato salvo. Incrementar ao mudar este schema de forma incompatível; a camada de storage deve tratar versões desconhecidas como dado corrompido (FR-010) e cair para o avatar padrão."
+    },
+    "skinToneId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Referência ao id de um AppearanceOption com kind='skinTone' no catálogo (src/data/catalog.ts)."
+    },
+    "hairStyleId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Referência ao id de um AppearanceOption com kind='hairStyle' no catálogo."
+    },
+    "equippedItems": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["top", "bottom", "shoes", "accessory"],
+      "description": "Peça vestida em cada slot do corpo, ou null se vazio (FR-006). Ao equipar um vestido, 'top' e 'bottom' recebem o mesmo ClothingItem.id (FR-007).",
+      "properties": {
+        "top": { "$ref": "#/$defs/equippedSlotValue" },
+        "bottom": { "$ref": "#/$defs/equippedSlotValue" },
+        "shoes": { "$ref": "#/$defs/equippedSlotValue" },
+        "accessory": { "$ref": "#/$defs/equippedSlotValue" }
+      }
+    }
+  },
+  "$defs": {
+    "equippedSlotValue": {
+      "oneOf": [
+        { "type": "string", "minLength": 1, "description": "id de um ClothingItem do catálogo" },
+        { "type": "null", "description": "Slot vazio — avatar mostra pele/roupa íntima básica nessa parte do corpo" }
+      ]
+    }
+  },
+  "examples": [
+    {
+      "schemaVersion": 1,
+      "skinToneId": "skin-03",
+      "hairStyleId": "hair-bob-red",
+      "equippedItems": {
+        "top": "dress-floral-01",
+        "bottom": "dress-floral-01",
+        "shoes": "shoes-sneaker-02",
+        "accessory": null
+      }
+    }
+  ]
+}
