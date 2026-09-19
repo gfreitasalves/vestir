@@ -16,6 +16,7 @@
 - Q: Além de tom de pele e cabelo, a personalização do avatar deve incluir tipo de corpo (altura, contorno)? → A: Não nesta versão — corpo único/padrão; personalização limitada a tom de pele e cabelo.
 - Q: O jogador pode usar vários acessórios ao mesmo tempo, ou "acessório" é um slot único como as outras categorias? → A: Acessório é um slot único (uma peça por vez), igual às demais categorias.
 - Q: Quantas peças de roupa, no mínimo, cada categoria deve ter disponíveis no lançamento? → A: 3 a 5 itens por categoria.
+- Q: Qual estilo visual o avatar e as roupas devem ter? → A: Ilustração 2D estilo "funko/chibi" (proporções estilizadas: cabeça grande, corpo pequeno/arredondado, poucos detalhes), exibida de frente e empilhada por categoria, sem rotação 3D.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -91,11 +92,12 @@ Como jogador, eu quero que o avatar e o look que montei continuem salvos quando 
 - **FR-010**: O sistema MUST continuar funcionando normalmente (exibindo um avatar padrão) quando não houver dados salvos ou quando os dados salvos estiverem corrompidos/ilegíveis.
 - **FR-011**: O sistema MUST suportar apenas um avatar por jogador (sem múltiplos avatares salvos simultaneamente) nesta versão.
 - **FR-012**: O sistema MUST disponibilizar, no lançamento, pelo menos 3 a 5 peças de roupa distintas em cada categoria (vestido, blusa, calça, short, sapato, acessório), para permitir combinações variadas de visual.
+- **FR-013**: O sistema MUST exibir o avatar e as roupas como ilustrações 2D em estilo "funko/chibi" (proporções estilizadas, cabeça grande, corpo pequeno/arredondado), vistas de frente e empilhadas por categoria sobre o corpo do avatar, sem rotação ou visualização 3D.
 
 ### Key Entities
 
-- **Avatar**: Representa o personagem do jogador. Atributos principais: tom de pele, estilo de cabelo, cor de cabelo (corpo em formato único/padrão, não configurável), e o conjunto de roupas atualmente vestidas (no máximo uma peça por categoria/slot do corpo; slots sem peça exibem a pele/roupa íntima básica).
-- **Peça de Roupa (Clothing Item)**: Representa um item vestível. Atributos principais: categoria (vestido, blusa, calça, short, sapato, acessório), slot(s) do corpo que ocupa, e a aparência visual da peça.
+- **Avatar**: Representa o personagem do jogador. Atributos principais: tom de pele, estilo de cabelo, cor de cabelo (corpo em formato único/padrão, não configurável, ilustrado em estilo 2D "funko/chibi"), e o conjunto de roupas atualmente vestidas (no máximo uma peça por categoria/slot do corpo; slots sem peça exibem a pele/roupa íntima básica).
+- **Peça de Roupa (Clothing Item)**: Representa um item vestível. Atributos principais: categoria (vestido, blusa, calça, short, sapato, acessório), slot(s) do corpo que ocupa, e a ilustração 2D da peça (mesmo estilo "funko/chibi" do avatar, vista de frente).
 - **Categoria de Roupa**: Agrupamento de peças do mesmo tipo (ex: todas as blusas), usado para organizar a seleção de roupas na interface.
 
 ## Success Criteria *(mandatory)*
@@ -115,3 +117,4 @@ Como jogador, eu quero que o avatar e o look que montei continuem salvos quando 
 - O conjunto inicial de peças de roupa e opções de personalização (tons de pele, cabelos) é definido pelo time de desenvolvimento como conteúdo do jogo, não criado pelo próprio jogador (sem upload de roupas customizadas).
 - O jogo é voltado para uso em navegador/dispositivo pessoal, sem requisitos específicos de acessibilidade além das práticas padrão de interfaces web.
 - O avatar tem um único tipo/formato de corpo (sem variações de altura ou contorno); a pele/roupa íntima básica exibida quando uma categoria está vazia é neutra e não contém nudez explícita.
+- A arte do avatar e das roupas é produzida como ilustrações 2D estáticas em estilo "funko/chibi" (uma única vista frontal por peça/variação), sem necessidade de modelagem 3D, animação ou múltiplos ângulos de câmera.
