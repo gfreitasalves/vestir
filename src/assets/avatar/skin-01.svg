@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 320" role="img">
+  <!-- Tom de pele claro -->
+  <ellipse cx="100" cy="300" rx="40" ry="8" fill="#000" opacity="0.08" />
+  <rect x="72" y="205" width="22" height="90" rx="10" fill="#F6D2B5" />
+  <rect x="106" y="205" width="22" height="90" rx="10" fill="#F6D2B5" />
+  <rect x="65" y="120" width="70" height="95" rx="28" fill="#F6D2B5" />
+  <circle cx="100" cy="70" r="55" fill="#F6D2B5" />
+  <rect x="68" y="130" width="64" height="45" rx="14" fill="#eceff1" />
+  <rect x="76" y="205" width="48" height="32" rx="10" fill="#dfe3e6" />
+  <circle cx="80" cy="65" r="6" fill="#3a2c22" />
+  <circle cx="120" cy="65" r="6" fill="#3a2c22" />
+  <path d="M85 92 Q100 102 115 92" stroke="#3a2c22" stroke-width="3" fill="none" stroke-linecap="round" />
+</svg>

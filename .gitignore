@@ -1,2 +1,24 @@
 # Claude Code local state (may contain credentials/auth tokens)
 .claude/settings.local.json
+
+# Node / Vite
+node_modules/
+dist/
+build/
+*.log
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Testing
+coverage/
+playwright-report/
+test-results/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/

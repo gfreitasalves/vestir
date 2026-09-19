@@ -24,10 +24,10 @@ Projeto único de frontend (sem backend), conforme `plan.md` > Structure Decisio
 
 **Purpose**: Inicialização do projeto
 
-- [ ] T001 Criar o scaffold do projeto Vite + React + TypeScript na raiz do repositório, com a estrutura de pastas de `plan.md` > Project Structure (`src/assets/`, `src/data/`, `src/state/`, `src/storage/`, `src/components/`, `src/App.tsx`, `src/main.tsx`, `tests/unit/`, `tests/integration/`, `tests/e2e/`, `index.html`, `vite.config.ts`, `package.json`)
-- [ ] T002 Instalar as dependências principais: `react`, `react-dom`, `typescript`, `vite`, e as de desenvolvimento `vitest`, `@testing-library/react`, `@testing-library/jest-dom`, `@playwright/test`, conforme as decisões de `research.md` (React 18 + Vite; Vitest + RTL + Playwright)
-- [ ] T003 [P] Configurar ESLint + Prettier para TypeScript/React na raiz do repositório (`.eslintrc.cjs`, `.prettierrc`)
-- [ ] T004 [P] Configurar os test runners: Vitest (bloco `test` em `vite.config.ts` ou `vitest.config.ts`) e Playwright (`playwright.config.ts`), conforme a estratégia de testes de `research.md`
+- [X] T001 Criar o scaffold do projeto Vite + React + TypeScript na raiz do repositório, com a estrutura de pastas de `plan.md` > Project Structure (`src/assets/`, `src/data/`, `src/state/`, `src/storage/`, `src/components/`, `src/App.tsx`, `src/main.tsx`, `tests/unit/`, `tests/integration/`, `tests/e2e/`, `index.html`, `vite.config.ts`, `package.json`)
+- [X] T002 Instalar as dependências principais: `react`, `react-dom`, `typescript`, `vite`, e as de desenvolvimento `vitest`, `@testing-library/react`, `@testing-library/jest-dom`, `@playwright/test`, conforme as decisões de `research.md` (React 18 + Vite; Vitest + RTL + Playwright)
+- [X] T003 [P] Configurar ESLint + Prettier para TypeScript/React na raiz do repositório (`.eslintrc.cjs`, `.prettierrc`)
+- [X] T004 [P] Configurar os test runners: Vitest (bloco `test` em `vite.config.ts` ou `vitest.config.ts`) e Playwright (`playwright.config.ts`), conforme a estratégia de testes de `research.md`
 
 ---
 
@@ -37,13 +37,13 @@ Projeto único de frontend (sem backend), conforme `plan.md` > Structure Decisio
 
 **⚠️ CRITICAL**: Nenhuma user story pode começar antes desta fase estar completa
 
-- [ ] T005 Definir os tipos de domínio em `src/state/types.ts`: `BodySlot` (`"top" | "bottom" | "shoes" | "accessory"`), `AppearanceOption`, `ClothingCategory`, `ClothingItem`, `AvatarState` — com exatamente os campos descritos em `data-model.md`
-- [ ] T006 [P] Escrever o catálogo estático de conteúdo em `src/data/catalog.ts`, seguindo `contracts/clothing-catalog.schema.json`: no mínimo as 6 categorias "vestido, blusa, calça, short, sapato e acessório" (FR-003), com `"vestido"` usando `slots: ["top", "bottom"]` (FR-007) e as demais um único slot; e "cada categoria deve ter no mínimo 3 e no máximo 5 ClothingItem no catálogo de lançamento" (FR-012, data-model.md), mais ao menos 1 `AppearanceOption` de `kind: "skinTone"` e 1 de `kind: "hairStyle"`
-- [ ] T007 [P] Criar as ilustrações 2D placeholder em estilo "funko/chibi" (FR-013) para o corpo base do avatar, as variações de tom de pele, os estilos de cabelo e cada peça do catálogo criado em T006, salvando-as em `src/assets/avatar/` e `src/assets/clothing/` nos caminhos referenciados pelo catálogo
-- [ ] T008 Implementar o reducer de estado do avatar em `src/state/avatarState.ts` com as ações `equipItem`, `unequipSlot`, `setSkinTone`, `setHairStyle`, `resetToDefault`, aplicando a regra do vestido: "ao equipar um item cuja categoria é 'vestido' ... os slots top e bottom são setados para o mesmo ClothingItem.id do vestido" e "ao equipar qualquer item de categoria 'blusa', 'calça' ou 'short' ... se o slot afetado continha um vestido, o outro slot que o vestido ocupava também é limpo" (FR-007, data-model.md), garantindo que `equippedItems` sempre tenha exatamente as chaves `top`, `bottom`, `shoes`, `accessory`
-- [ ] T009 [P] Implementar o hook `useAvatarStore` (Context + `useReducer` envolvendo `src/state/avatarState.ts`, somente em memória por enquanto) em `src/state/useAvatarStore.ts`
-- [ ] T010 [P] Implementar o componente `AvatarStage` em `src/components/AvatarStage.tsx`, empilhando corpo base → slot `bottom` → slot `top` (ou vestido) → `shoes` → cabelo → `accessory` por `z-index` fixo, mostrando a pele/roupa íntima básica nos slots com valor `null` (FR-006, FR-013)
-- [ ] T011 Montar o shell da aplicação em `src/App.tsx` e `src/main.tsx` (+ `index.html`), renderizando `AvatarStage` com o `AvatarState` padrão (primeira opção de `skinTone`/`hairStyle`, todos os slots `null` — FR-001) — depende de T008, T009, T010
+- [X] T005 Definir os tipos de domínio em `src/state/types.ts`: `BodySlot` (`"top" | "bottom" | "shoes" | "accessory"`), `AppearanceOption`, `ClothingCategory`, `ClothingItem`, `AvatarState` — com exatamente os campos descritos em `data-model.md`
+- [X] T006 [P] Escrever o catálogo estático de conteúdo em `src/data/catalog.ts`, seguindo `contracts/clothing-catalog.schema.json`: no mínimo as 6 categorias "vestido, blusa, calça, short, sapato e acessório" (FR-003), com `"vestido"` usando `slots: ["top", "bottom"]` (FR-007) e as demais um único slot; e "cada categoria deve ter no mínimo 3 e no máximo 5 ClothingItem no catálogo de lançamento" (FR-012, data-model.md), mais ao menos 1 `AppearanceOption` de `kind: "skinTone"` e 1 de `kind: "hairStyle"`
+- [X] T007 [P] Criar as ilustrações 2D placeholder em estilo "funko/chibi" (FR-013) para o corpo base do avatar, as variações de tom de pele, os estilos de cabelo e cada peça do catálogo criado em T006, salvando-as em `src/assets/avatar/` e `src/assets/clothing/` nos caminhos referenciados pelo catálogo
+- [X] T008 Implementar o reducer de estado do avatar em `src/state/avatarState.ts` com as ações `equipItem`, `unequipSlot`, `setSkinTone`, `setHairStyle`, `resetToDefault`, aplicando a regra do vestido: "ao equipar um item cuja categoria é 'vestido' ... os slots top e bottom são setados para o mesmo ClothingItem.id do vestido" e "ao equipar qualquer item de categoria 'blusa', 'calça' ou 'short' ... se o slot afetado continha um vestido, o outro slot que o vestido ocupava também é limpo" (FR-007, data-model.md), garantindo que `equippedItems` sempre tenha exatamente as chaves `top`, `bottom`, `shoes`, `accessory`
+- [X] T009 [P] Implementar o hook `useAvatarStore` (Context + `useReducer` envolvendo `src/state/avatarState.ts`, somente em memória por enquanto) em `src/state/useAvatarStore.ts`
+- [X] T010 [P] Implementar o componente `AvatarStage` em `src/components/AvatarStage.tsx`, empilhando corpo base → slot `bottom` → slot `top` (ou vestido) → `shoes` → cabelo → `accessory` por `z-index` fixo, mostrando a pele/roupa íntima básica nos slots com valor `null` (FR-006, FR-013)
+- [X] T011 Montar o shell da aplicação em `src/App.tsx` e `src/main.tsx` (+ `index.html`), renderizando `AvatarStage` com o `AvatarState` padrão (primeira opção de `skinTone`/`hairStyle`, todos os slots `null` — FR-001) — depende de T008, T009, T010
 
 **Checkpoint**: Fundação pronta — as user stories podem começar
 
@@ -59,15 +59,15 @@ Projeto único de frontend (sem backend), conforme `plan.md` > Structure Decisio
 
 > **NOTE: Escrever estes testes PRIMEIRO, garantir que falham antes de implementar**
 
-- [ ] T012 [P] [US1] Teste unitário da regra de conflito do vestido em `tests/unit/avatarState.test.ts`: equipar um item de categoria "vestido" preenche `top` e `bottom` com o mesmo id; equipar em seguida uma "blusa"/"calça"/"short" limpa o outro slot que o vestido ocupava
-- [ ] T013 [P] [US1] Teste de integração em `tests/integration/dressUp.test.tsx`: selecionar uma peça de uma categoria atualiza a camada correspondente no `AvatarStage`; removê-la volta o slot para a camada de pele/roupa íntima básica (FR-006)
+- [X] T012 [P] [US1] Teste unitário da regra de conflito do vestido em `tests/unit/avatarState.test.ts`: equipar um item de categoria "vestido" preenche `top` e `bottom` com o mesmo id; equipar em seguida uma "blusa"/"calça"/"short" limpa o outro slot que o vestido ocupava
+- [X] T013 [P] [US1] Teste de integração em `tests/integration/dressUp.test.tsx`: selecionar uma peça de uma categoria atualiza a camada correspondente no `AvatarStage`; removê-la volta o slot para a camada de pele/roupa íntima básica (FR-006)
 
 ### Implementation for User Story 1
 
-- [ ] T014 [P] [US1] Implementar `CategoryTabs` em `src/components/CategoryTabs.tsx`, listando as 6 categorias do catálogo (`src/data/catalog.ts`) e controlando a categoria ativa
-- [ ] T015 [P] [US1] Implementar `ItemGrid` em `src/components/ItemGrid.tsx`, exibindo as peças da categoria ativa mais uma opção de "remover", chamando `equipItem`/`unequipSlot` de `useAvatarStore`
-- [ ] T016 [US1] Conectar `CategoryTabs` + `ItemGrid` + `AvatarStage` em `src/App.tsx` para completar o fluxo de vestir (depende de T014, T015)
-- [ ] T017 [P] [US1] Adicionar destaque visual (estado selecionado) para a peça atualmente equipada em cada categoria em `src/components/ItemGrid.module.css`
+- [X] T014 [P] [US1] Implementar `CategoryTabs` em `src/components/CategoryTabs.tsx`, listando as 6 categorias do catálogo (`src/data/catalog.ts`) e controlando a categoria ativa
+- [X] T015 [P] [US1] Implementar `ItemGrid` em `src/components/ItemGrid.tsx`, exibindo as peças da categoria ativa mais uma opção de "remover", chamando `equipItem`/`unequipSlot` de `useAvatarStore`
+- [X] T016 [US1] Conectar `CategoryTabs` + `ItemGrid` + `AvatarStage` em `src/App.tsx` para completar o fluxo de vestir (depende de T014, T015)
+- [X] T017 [P] [US1] Adicionar destaque visual (estado selecionado) para a peça atualmente equipada em cada categoria em `src/components/ItemGrid.module.css`
 
 **Checkpoint**: User Story 1 totalmente funcional e testável de forma independente
 
@@ -81,12 +81,12 @@ Projeto único de frontend (sem backend), conforme `plan.md` > Structure Decisio
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T018 [P] [US2] Teste de integração em `tests/integration/appearance.test.tsx`: escolher um tom de pele ou estilo de cabelo diferente atualiza o `AvatarStage` imediatamente e permanece ao alternar para a aba de roupas
+- [X] T018 [P] [US2] Teste de integração em `tests/integration/appearance.test.tsx`: escolher um tom de pele ou estilo de cabelo diferente atualiza o `AvatarStage` imediatamente e permanece ao alternar para a aba de roupas
 
 ### Implementation for User Story 2
 
-- [ ] T019 [P] [US2] Implementar `AppearancePanel` em `src/components/AppearancePanel.tsx`, listando as `AppearanceOption` de `kind: "skinTone"` e `kind: "hairStyle"` do catálogo, chamando `setSkinTone`/`setHairStyle` de `useAvatarStore`
-- [ ] T020 [US2] Conectar `AppearancePanel` em `src/App.tsx` junto com a UI de vestir (depende de T019, T016)
+- [X] T019 [P] [US2] Implementar `AppearancePanel` em `src/components/AppearancePanel.tsx`, listando as `AppearanceOption` de `kind: "skinTone"` e `kind: "hairStyle"` do catálogo, chamando `setSkinTone`/`setHairStyle` de `useAvatarStore`
+- [X] T020 [US2] Conectar `AppearancePanel` em `src/App.tsx` junto com a UI de vestir (depende de T019, T016)
 
 **Checkpoint**: User Stories 1 e 2 funcionam juntas e de forma independente
 
@@ -100,13 +100,13 @@ Projeto único de frontend (sem backend), conforme `plan.md` > Structure Decisio
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T021 [P] [US3] Teste unitário em `tests/unit/localAvatarStorage.test.ts`: salvar e depois carregar retorna um `AvatarState` equivalente; chave ausente, JSON inválido e um `schemaVersion` inesperado caem todos para o `AvatarState` padrão sem lançar exceção (FR-010)
-- [ ] T022 [P] [US3] Teste e2e (Playwright) em `tests/e2e/persistence.spec.ts`: personalizar o avatar e vestir peças, recarregar a página, confirmar que a mesma pele/cabelo/roupas aparecem; abrir um contexto de navegador novo (sem storage) e confirmar que o avatar padrão aparece sem erro
+- [X] T021 [P] [US3] Teste unitário em `tests/unit/localAvatarStorage.test.ts`: salvar e depois carregar retorna um `AvatarState` equivalente; chave ausente, JSON inválido e um `schemaVersion` inesperado caem todos para o `AvatarState` padrão sem lançar exceção (FR-010)
+- [X] T022 [P] [US3] Teste e2e (Playwright) em `tests/e2e/persistence.spec.ts`: personalizar o avatar e vestir peças, recarregar a página, confirmar que a mesma pele/cabelo/roupas aparecem; abrir um contexto de navegador novo (sem storage) e confirmar que o avatar padrão aparece sem erro
 
 ### Implementation for User Story 3
 
-- [ ] T023 [US3] Implementar `src/storage/localAvatarStorage.ts` (save/load/reset sob a chave `vestir.avatarState.v1`) conforme `contracts/avatar-save-state.schema.json`: `schemaVersion` deve ser exatamente a constante `1`, `equippedItems` deve ter exatamente as chaves obrigatórias `top`, `bottom`, `shoes`, `accessory`; qualquer erro de parse ou `schemaVersion` divergente é tratado como dado corrompido e reseta para o padrão (FR-010)
-- [ ] T024 [US3] Conectar `src/state/useAvatarStore.ts` para hidratar a partir de `localAvatarStorage` ao montar e persistir a cada mudança de estado (equipar/remover/mudar aparência) — depende de T023, T009
+- [X] T023 [US3] Implementar `src/storage/localAvatarStorage.ts` (save/load/reset sob a chave `vestir.avatarState.v1`) conforme `contracts/avatar-save-state.schema.json`: `schemaVersion` deve ser exatamente a constante `1`, `equippedItems` deve ter exatamente as chaves obrigatórias `top`, `bottom`, `shoes`, `accessory`; qualquer erro de parse ou `schemaVersion` divergente é tratado como dado corrompido e reseta para o padrão (FR-010)
+- [X] T024 [US3] Conectar `src/state/useAvatarStore.ts` para hidratar a partir de `localAvatarStorage` ao montar e persistir a cada mudança de estado (equipar/remover/mudar aparência) — depende de T023, T009
 
 **Checkpoint**: Todas as user stories funcionam de forma independente, incluindo persistência
 
@@ -116,10 +116,10 @@ Projeto único de frontend (sem backend), conforme `plan.md` > Structure Decisio
 
 **Purpose**: Melhorias que afetam múltiplas user stories
 
-- [ ] T025 [P] Adicionar texto alternativo/rótulos acessíveis nos controles de `CategoryTabs`, `ItemGrid` e `AppearancePanel` em `src/components/`
-- [ ] T026 Rodar a validação manual completa de `quickstart.md` (User Stories 1, 2 e 3) e corrigir qualquer divergência encontrada
-- [ ] T027 [P] Adicionar `README.md` na raiz do repositório com instruções de setup/execução/teste (`npm install`, `npm run dev`, `npm test`, `npm run test:e2e`)
-- [ ] T028 Verificar que a troca de peça de roupa mantém a latência percebida abaixo de 100ms (meta de `research.md`/SC-001), inspecionando no DevTools do navegador
+- [X] T025 [P] Adicionar texto alternativo/rótulos acessíveis nos controles de `CategoryTabs`, `ItemGrid` e `AppearancePanel` em `src/components/`
+- [X] T026 Rodar a validação manual completa de `quickstart.md` (User Stories 1, 2 e 3) e corrigir qualquer divergência encontrada
+- [X] T027 [P] Adicionar `README.md` na raiz do repositório com instruções de setup/execução/teste (`npm install`, `npm run dev`, `npm test`, `npm run test:e2e`)
+- [X] T028 Verificar que a troca de peça de roupa mantém a latência percebida abaixo de 100ms (meta de `research.md`/SC-001), inspecionando no DevTools do navegador
 
 ---
 

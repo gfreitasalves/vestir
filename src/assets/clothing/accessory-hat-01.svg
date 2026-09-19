@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 320" role="img">
+  <!-- Chapéu vermelho -->
+  <ellipse cx="100" cy="28" rx="46" ry="10" fill="#C0392B" />
+  <path d="M70 28 Q100 -10 130 28 Z" fill="#C0392B" />
+</svg>
